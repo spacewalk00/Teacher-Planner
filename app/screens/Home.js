@@ -1,11 +1,21 @@
-import React from 'react';
-import { View, Text } from 'react-native';
+import React, { useState } from 'react';
+import { View } from 'react-native';
+import { SafeAreaView } from 'react-native-safe-area-context';
+import { Calendar } from '../components/Calendar';
 
 export default function HomeScreen() {
-    return(
-        <View className="flex-1 justify-center items-center bg-surface">
-            <Text className="text-3xl font-bold text-primary">Teacher Planner</Text>
-            <Text className="text-neutral mt-2">홈</Text>
-        </View>
+    const [selectedDate, setSelectedDate] = useState(null);
+
+    const handleDateSelect = (date) => {
+        setSelectedDate(date);
+        console.log('선택된 날짜:', date);
+    };
+
+    return (
+        <SafeAreaView className="flex-1 bg-surface">
+            <View className="flex-1 p-4">
+                <Calendar onDateSelect={handleDateSelect} />
+            </View>
+        </SafeAreaView>
     );
 }
