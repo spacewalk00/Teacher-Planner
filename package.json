@@ -1,28 +1,29 @@
 {
-    "name": "teacherplanner_front",
-    "license": "0BSD",
-    "version": "1.0.0",
-    "main": "index.js",
-    "scripts": {
-        "start": "expo start",
-        "android": "expo start --android",
-        "ios": "expo start --ios",
-        "web": "expo start --web"
-    },
-    "dependencies": {
-        "@react-navigation/bottom-tabs": "^7.8.6",
-        "@react-navigation/native-stack": "^7.8.0",
-        "expo": "~54.0.25",
-        "expo-status-bar": "~3.0.8",
-        "nativewind": "^4.2.1",
-        "react": "19.1.0",
-        "react-dom": "19.1.0",
-        "react-native": "0.81.5",
-        "react-native-web": "^0.21.0",
-        "tailwindcss": "^3.4.18"
-    },
-    "private": true,
-    "devDependencies": {
-        "babel-preset-expo": "^54.0.7"
-    }
+  "name": "teacherplanner_front",
+  "license": "0BSD",
+  "version": "1.0.0",
+  "main": "index.js",
+  "scripts": {
+    "start": "expo start",
+    "android": "expo start --android",
+    "ios": "expo start --ios",
+    "web": "expo start --web"
+  },
+  "dependencies": {
+    "@react-navigation/bottom-tabs": "^7.8.6",
+    "@react-navigation/native-stack": "^7.8.0",
+    "expo": "~54.0.25",
+    "expo-status-bar": "~3.0.8",
+    "nativewind": "^4.2.1",
+    "react": "19.1.0",
+    "react-dom": "19.1.0",
+    "react-native": "0.81.5",
+    "react-native-gesture-handler": "~2.28.0",
+    "react-native-web": "^0.21.0",
+    "tailwindcss": "^3.4.18"
+  },
+  "private": true,
+  "devDependencies": {
+    "babel-preset-expo": "^54.0.7"
+  }
 }
