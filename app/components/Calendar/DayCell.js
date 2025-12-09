@@ -11,7 +11,7 @@ const DayCell = memo(({
     onPress,
     children,
 }) => {
-    const { date, day, isCurrentMonth } = dayInfo;
+    const { date, day, isCurrentMonth, holiday } = dayInfo;
     const today = isToday(date);
     const sunday = isSunday(date);
     const saturday = isSaturday(date);
@@ -39,7 +39,8 @@ const DayCell = memo(({
         if (!isCurrentMonth) {
             return `${base} text-neutral-300`;
         }
-        if (sunday) {
+        // 공휴일이면 빨간색 (일요일과 동일)
+        if (holiday || sunday) {
             return `${base} text-error`;
         }
         if (saturday) {
@@ -58,6 +59,12 @@ const DayCell = memo(({
                 <Text className={getTextClassName()}>
                     {day}
                 </Text>
+                {/* 공휴일 이름 표시 */}
+                {holiday && isCurrentMonth && (
+                    <Text className="text-[8px] text-error mt-0.5" numberOfLines={1}>
+                        {holiday}
+                    </Text>
+                )}
             </View>
             <View className="flex-1 mt-0.5">
                 {children}
