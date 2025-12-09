@@ -18,7 +18,7 @@ const CalendarGrid = memo(({
     }
 
     return (
-        <View className="bg-background">
+        <View className="flex-1 bg-background">
             {/* 요일 헤더 */}
             <View className="flex-row py-3 border-b border-neutral-200 mx-1">
                 {WEEKDAY_NAMES.map((name, index) => (
@@ -35,9 +35,9 @@ const CalendarGrid = memo(({
             </View>
 
             {/* 날짜 그리드 */}
-            <View className="px-1 py-1">
+            <View className="flex-1 px-1 py-1">
                 {weeks.map((week, weekIndex) => (
-                    <View key={weekIndex} className="flex-row">
+                    <View key={weekIndex} className="flex-1 flex-row">
                         {week.map((dayInfo) => (
                             <DayCell
                                 key={dayInfo.key}

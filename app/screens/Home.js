@@ -13,7 +13,7 @@ export default function HomeScreen() {
 
     return (
         <SafeAreaView className="flex-1 bg-surface">
-            <View className="flex-1 p-4">
+            <View className="flex-1 p-4 pb-24">
                 <Calendar onDateSelect={handleDateSelect} />
             </View>
         </SafeAreaView>

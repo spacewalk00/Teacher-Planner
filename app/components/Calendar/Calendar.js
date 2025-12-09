@@ -48,7 +48,7 @@ const Calendar = ({
 
     return (
         <GestureDetector gesture={composedGesture}>
-            <View className="bg-background rounded-2xl overflow-hidden shadow-lg">
+            <View className="flex-1 bg-background rounded-2xl overflow-hidden shadow-lg">
                 <CalendarHeader
                     year={year}
                     month={month}
