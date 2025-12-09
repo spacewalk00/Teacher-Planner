@@ -4,6 +4,7 @@ import {
     getFirstDayOfWeek,
     formatDateToString,
 } from '../utils/calendarUtils';
+import useHolidays from './useHolidays';
 
 /**
  * 5줄 고정 달력 훅
@@ -15,6 +16,9 @@ export const useCalendar = (initialDate = new Date()) => {
 
     const year = currentDate.getFullYear();
     const month = currentDate.getMonth();
+
+    // 공휴일 정보 가져오기
+    const { holidays } = useHolidays(year);
 
     /**
      * 5줄 고정 달력 날짜 배열 생성
@@ -32,26 +36,30 @@ export const useCalendar = (initialDate = new Date()) => {
         for (let i = firstDayOfWeek - 1; i >= 0; i--) {
             const day = daysInPrevMonth - i;
             const date = new Date(year, month - 1, day);
+            const dateKey = formatDateToString(date);
             days.push({
                 date,
                 day,
                 isCurrentMonth: false,
                 isPrevMonth: true,
                 isNextMonth: false,
-                key: formatDateToString(date),
+                key: dateKey,
+                holiday: holidays[dateKey] || null,
             });
         }
 
         // 현재 달 날짜 채우기
         for (let day = 1; day <= daysInCurrentMonth; day++) {
             const date = new Date(year, month, day);
+            const dateKey = formatDateToString(date);
             days.push({
                 date,
                 day,
                 isCurrentMonth: true,
                 isPrevMonth: false,
                 isNextMonth: false,
-                key: formatDateToString(date),
+                key: dateKey,
+                holiday: holidays[dateKey] || null,
             });
         }
 
@@ -59,18 +67,20 @@ export const useCalendar = (initialDate = new Date()) => {
         const remainingCells = TOTAL_CELLS - days.length;
         for (let day = 1; day <= remainingCells; day++) {
             const date = new Date(year, month + 1, day);
+            const dateKey = formatDateToString(date);
             days.push({
                 date,
                 day,
                 isCurrentMonth: false,
                 isPrevMonth: false,
                 isNextMonth: true,
-                key: formatDateToString(date),
+                key: dateKey,
+                holiday: holidays[dateKey] || null,
             });
         }
 
         return days;
-    }, [year, month]);
+    }, [year, month, holidays]);
 
     /**
      * 이전 달로 이동
