@@ -2,6 +2,7 @@ import React, { useState } from 'react';
 import { View } from 'react-native';
 import { SafeAreaView } from 'react-native-safe-area-context';
 import { Calendar } from '../components/Calendar';
+import * as testSupabase from '../utils/testSupabase';
 
 export default function HomeScreen() {
     const [selectedDate, setSelectedDate] = useState(null);
