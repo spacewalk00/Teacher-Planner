@@ -100,7 +100,7 @@ export const getSchedulesByDateRange = async (startDate, endDate) => {
  */
 export const addSchedule = async (schedule) => {
     try {
-        const { title, startDate, endDate, userId } = schedule;
+        const { title, startDate, endDate, description, userId } = schedule;
 
         // 날짜 검증
         if (new Date(startDate) > new Date(endDate)) {
@@ -115,6 +115,7 @@ export const addSchedule = async (schedule) => {
             title,
             start_date: formatDateToString(startDate),
             end_date: formatDateToString(endDate),
+            ...(description && { description }),
         };
 
         const { data, error } = await supabase
@@ -152,8 +153,13 @@ export const updateSchedule = async (id, updates) => {
         const updateData = {};
 
         if (updates.title !== undefined) updateData.title = updates.title;
-        if (updates.startDate !== undefined) updateData.start_date = formatDateToString(updates.startDate);
-        if (updates.endDate !== undefined) updateData.end_date = formatDateToString(updates.endDate);
+        if (updates.startDate !== undefined) {
+            updateData.start_date = formatDateToString(updates.startDate);
+        }
+        if (updates.endDate !== undefined) {
+            updateData.end_date = formatDateToString(updates.endDate);
+        }
+        if (updates.description !== undefined) updateData.description = updates.description;
 
         const { data, error } = await supabase
             .from('schedules')
