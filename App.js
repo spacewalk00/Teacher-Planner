@@ -2,18 +2,21 @@ import './global.css';
 import { NavigationContainer } from '@react-navigation/native';
 import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
 import { GestureHandlerRootView } from 'react-native-gesture-handler';
+import { QueryClientProvider } from '@tanstack/react-query';
 import { Ionicons } from '@expo/vector-icons';
 import HomeScreen from './app/screens/Home';
 import OverViewScreen from './app/screens/OverView';
 import SettingScreen from './app/screens/Setting';
 import { tabColors, headerColors } from './app/constants/colors';
+import { queryClient } from './app/config/queryClient';
 
 const Tab = createBottomTabNavigator();
 
 export default function App() {
     return (
-        <GestureHandlerRootView style={{ flex: 1 }}>
-            <NavigationContainer>
+        <QueryClientProvider client={queryClient}>
+            <GestureHandlerRootView style={{ flex: 1 }}>
+                <NavigationContainer>
                 <Tab.Navigator
                     screenOptions={({ route }) => ({
                         tabBarIcon: ({ focused, color, size }) => {
@@ -69,7 +72,8 @@ export default function App() {
                         options={{ title: '설정' }}
                     />
                 </Tab.Navigator>
-            </NavigationContainer>
-        </GestureHandlerRootView>
+                </NavigationContainer>
+            </GestureHandlerRootView>
+        </QueryClientProvider>
     );
 }
